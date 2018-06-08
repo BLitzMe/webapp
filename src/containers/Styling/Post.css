@@ -1,0 +1,62 @@
+
+
+.postsBucket {
+    display: grid;
+    grid-template-columns: auto auto auto 210px;
+    grid-template-rows: 170px 62px;
+    grid-gap: 3px;
+    background-color:dimgrey;
+    opacity: 0.85;
+    max-height: 500px;
+    width: 1400px;
+    border-radius: 20px;
+    padding: 0px 10px 10px 10px;
+
+}
+
+/*.postsBucket > div {*/
+    /*background-color: rgba(255, 255, 255, 0.8);*/
+
+/*}*/
+
+.postName {
+
+    grid-column: 1/2;
+    grid-row: 1/2;
+    color: black;
+    font-size: 20px;
+    text-align: left;
+    vertical-align: text-top;
+    font-family: Andalus, serif;
+    font-style: italic;
+
+    opacity: 1;
+
+
+
+}
+
+.foodPicture {
+    grid-column: 4/5;
+    grid-row: auto;
+    height: 150px;
+    width: 210px;
+    justify-self: end;
+    padding-top: 20px;
+
+
+}
+
+.Ort {
+    grid-column: 1/2;
+    grid-row:  2/3;
+    padding-left: 2px;
+    opacity: 1;
+}
+
+.Date {
+
+    grid-column: 2/3;
+    grid-row: 2/3;
+    opacity: 1;
+}

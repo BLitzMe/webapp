@@ -1,20 +1,18 @@
-.container {
+.topBanner {
 
-    background-color: unset;
+background-color: unset;
 
 }
 
-.col-8 {
+.bannerText {
 
     border-radius: 20px;
     text-align: center;
     font-size: 40px;
     font-family: Lobster, serif;
     font-style: italic;
-    background-color: blanchedalmond;
+
+
 
 }
 
-.h1 {
-
-}

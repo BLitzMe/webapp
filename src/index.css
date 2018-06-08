@@ -2,5 +2,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: whitesmoke;
+
+  background-image: url("./images/mainPage.jpg");
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+
+;
 }
