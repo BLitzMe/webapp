@@ -1,9 +1,10 @@
-import {createStore, applyMiddleware, combineReducers} from "redux";
-import logger from "redux-logger";
+import {createStore, combineReducers} from "redux";
+
+import VanillaReducer from "./reducers/VanillaReducer"
 
 
 export default createStore(
-    combineReducers({}),
+    combineReducers({vR: VanillaReducer}),
     {},
-    applyMiddleware(logger())
+
 );

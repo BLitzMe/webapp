@@ -1,0 +1,32 @@
+#Appp{
+    display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr);
+
+    max-height: max-content;
+    max-width: 1500px;
+}
+
+#topBanner{
+    grid-column: 1/-1;
+    grid-row: 1;
+    padding-top: 30px;
+}
+
+#postsContainer{
+    grid-column: 1/ 12;
+    grid-row: auto;
+
+}
+
+#fixedHeader{
+
+    position: fixed;
+
+
+
+}
+
+#scrollUpButton{
+    grid-column: 11/12;
+    grid-row: inherit;
+}
