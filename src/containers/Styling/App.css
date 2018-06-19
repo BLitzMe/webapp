@@ -9,14 +9,17 @@
 #topBanner{
     grid-column: 1/-1;
     grid-row: 1;
-    padding-top: 30px;
+    padding-top: 50px;
 }
 
 #postsContainer{
     grid-column: 1/ 12;
     grid-row: auto;
+    max-height: max-content;
 
 }
+
+
 
 #fixedHeader{
 

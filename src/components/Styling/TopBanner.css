@@ -1,23 +1,19 @@
 .topBanner {
-
-background-color: unset;
+    
+    background-color: unset;
     /*background-image: url("./images/mainPage.jpg");*/
     /*background-size:     cover;*/
     /*background-repeat:   no-repeat;*/
     /*background-position: center center;*/
-
 }
 
-.bannerText {
 
+.bannerText {
+   
     border-radius: 20px;
     text-align: center;
     font-size: 40px;
     font-family: Lobster, serif;
     font-style: italic;
-    color:#373737;
-
-
-
+    color: #373737;
 }
-

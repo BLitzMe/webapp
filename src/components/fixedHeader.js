@@ -1,13 +1,22 @@
 import React from 'react';
 import "./Styling/fixedHeader.css"
 
-export const FixedHeader = () => {
-    return (
-        <div>
+export class FixedHeader extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
             <div className="fixedHeader">
-                <button className="box newPostButton">Neues Beitrag</button>
-                <input className="box searchBox" type="text" value="def"/>
+                <div className="icons">
+                    {this.props.myIcons}
+                </div>
+                <div className="otherStuff">
+                <input className="box searchBoxx" type="text" value="Lebensmittel finden" />
+                    <button className="box newPostButton">Neues Beitrag</button>
+                    
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
