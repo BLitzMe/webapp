@@ -12,18 +12,18 @@ class App extends React.Component {
     render() {
         return (
 
-            <div id="Appp">
-                <div id="fixedHeader">
+            <div id="App">
+               {<div id="fixedHeader">
                     <FixedHeader myIcons={this.myIcons}/>
-                </div>
+                </div>}
                 <div id="topBanner">
                     <TopBanner/>
                 </div>
-                <div>
-                    <PostsContainer myPost={this.myPost} id="PostsContainer"/>
+                <div id="postsContainer">
+                    <PostsContainer myPost={this.myPost} />
                 </div>
                 <div id="scrollUpButton">
-
+                    <p> this is where the button comes upea</p>
                 </div>
             </div>
         );

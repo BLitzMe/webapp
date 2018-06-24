@@ -8,7 +8,7 @@ const Icons = () => {
       <div className="iconList">
         <ul className="contact">
           <li><i className="fa fa-phone" id="phoneIcon"></i> 123-foodsharing-45</li>
-          <li></li>
+          
 
         </ul>
         <ul className="socials">
@@ -18,9 +18,7 @@ const Icons = () => {
           <li><i className="fa fa-youtube-square"></i></li>
         </ul>
       </div>
-      <div>
-        <li className="drop"></li>
-      </div>
+      
     </div>
 
   );

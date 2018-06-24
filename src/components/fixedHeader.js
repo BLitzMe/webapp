@@ -12,9 +12,9 @@ export class FixedHeader extends React.Component {
                     {this.props.myIcons}
                 </div>
                 <div className="otherStuff">
-                <input className="box searchBoxx" type="text" value="Lebensmittel finden" />
+                    <input className="box searchBoxx" type="text" value="Lebensmittel finden" />
                     <button className="box newPostButton">Neues Beitrag</button>
-                    
+
                 </div>
             </div>
         );

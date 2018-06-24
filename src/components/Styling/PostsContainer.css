@@ -1,8 +1,10 @@
-.postsContainer{
-
-    background-color: #F4F4F4;
-    padding: 15px 10px 10px 14px;
+#postsContainer {
+    max-width: 100vw;
     border-radius: 30px;
-    opacity: 0.8;
+}
 
+#postsContainer li {
+    display: inline-block;
+    grid-column: 1/-1;
+    margin-left: 1em;
 }

@@ -1,12 +1,8 @@
 //statefull component
 import React from "react";
-import "./Styling/Post.css"
-import { connect } from "react-redux"
-import posed, { PoseGroup } from "react-pose";
-import styled from "styled-components";
-import { tween } from "popmotion";
+import "./Styling/Post.css";
+import { connect } from "react-redux";
 import tomatoes from "../images/dummyImages/tomatoes.jpg"
-import Image from 'react-image-resizer'
 
 class Post extends React.Component {
 
@@ -14,77 +10,71 @@ class Post extends React.Component {
         super(props);
 
         this.state = {
-            active: false
+
+            modal: false
         };
+
+        this.toggle = this.toggle.bind(this);
     }
 
-
-    _handlePostNameClick = (e) => {
-        this.setState({ active: !this.state.active });
-    };
+    toggle = (e) => {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
 
 
 
     render() {
-        const { active } = this.state;
+        const { modal } = this.state;
 
         return (
 
-            <div className="postsBucket ">
+            <div id="postsBucket" data-toggle="modal" data-target="#exampleModalCenter">
+                <p id="mainPostName">{this.props.post.name}</p>
+                <p id="mainOrt">{this.props.post.ort}</p>
+                <p id="mainDate">{this.props.post.date} </p>
+
+                <img id="postImage" src={tomatoes} alt="" />
+
+                <div >
+
+                    <div class="modal " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" id="modadHeader">
+
+                                    <h5 class="modal-title" id="exampleModalLongTitle">{this.props.post.name}</h5>
 
 
-                <div className="postName">
-                    <h3 className="postNameeElement" onClick={this._handlePostNameClick}> {this.props.post.name}</h3>
-                </div>
-                <div className="thumbnail foodPicture">
-                    <Image src={tomatoes} alt=""
-                        height={150}
-                        width={250}
-                        border-radius={20}
-                    />
-                </div>
-                <div className="Ort">
-                    <h5>Ort: {this.props.post.ort} </h5>
-                </div>
-                <div className="Date">
-                    <h5>Datum: {this.props.post.postDate}</h5>
-                </div>
-                {active && [
-                    <div className="description">
-                        <div className=" des-heading">
-                            <h6>Beschreibung</h6>
+                                    <p id="modalOrt">{this.props.post.ort}</p>
+
+
+                                    <p id="modalDate">{this.props.post.postDate} </p>
+
+                                    <button type="button" class="close" aria-label="Close" id="closeCross">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img id="modalImage" src={tomatoes} alt="" />
+                                    <h6 id="desc-title">Description</h6>
+                                    <p id="description">Officia sint cillum do exercitation veniam. Non mollit aliquip velit cupidatat anim cupidatat eu sint ea commodo. Consectetur reprehenderit non est nulla do esse commodo commodo incididunt dolor sunt ut pariatur.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" >Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
                         </div>
-                        <div className=" des-content">
-                            <p> this pack of super good tomatoes was brought to you by uncle
-                                scrooge Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti mollitia neque
-                                quaerat reiciendis vero? Amet aut consectetur deserunt dolores explicabo illo iste,
-                                necessitatibus quam sit vel. Accusantium aspernatur assumenda aut autem dolor ea explicabo
-                                fuga id labore maiores maxime nulla numquam, placeat praesentium quam quis quod ratione sed
-                                tempora veniam. Adipisci atque delectus earum enim error, excepturi exercitationem
-                                laboriosam magni neque odit pariatur, possimus sint voluptate! Ab aliquid aperiam corporis
-                                dolores, hic laboriosam laudantium molestiae neque, non pariatur quam quis, ut veniam! Et
-                                facere ipsa nemo nihil obcaecati pariatur sint! Ab animi culpa dolores doloribus obcaecati,
-                                officiis quo quos velit!</p>
-                        </div>
-                    </div>,
-                    <div className="postCommentButton">
-                        <button className="commentBtnDesign">Neue Kommentar</button>
-                    </div>,
-                    <div className="commentFieldBucket">
-                        <input className="commentField" type="text" value="Tippen Sie ein" />
-                    </div>,
-                    <div className="moreCommentsButton">
-                        <button className="commentBtnDesign showComments">Kommentare Anzeigen</button>
                     </div>
-                ]
-                }
+
+                </div>
             </div>
-
-
-
         );
     }
 }
+
 
 
 

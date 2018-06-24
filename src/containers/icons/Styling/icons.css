@@ -1,49 +1,53 @@
-.iconsContainer{
+* {
+    margin: 0 ;
+    padding: 0 ;
+}
+
+.iconsContainer {
     display: grid;
     grid-template-columns: repeat(12, [col-start]1fr);
-   
-   
+    width: 20em;
+}
 
+.iconList {
+    grid-column: 1/-1;
+    grid-row: 1/span 3;
     
 }
 
-
-
-.iconList{
-    grid-column: 1/span 7;
-    grid-row: 1/span 3;
-    padding-top:3px;
-   
+.socials li {
+    display: inline;
+    font-size: 25 px;
+    color: black;
 }
 
-li{
-    display:inline;
-    font-size:25 px;
-    color:black;
-}
-
-
-i{
-    font-size: 25px;
-    color:black;
+.socials i {
+    font-size: 1.7em;
+    color: black;
     justify-self: end;
 }
-.contact{
-    grid-column: 1/span 5;
+
+.contact {
+    grid-column: 1/-1;
     grid-row: 1/span 1;
-    
     align-self: end;
+    
 }
-.socials{
+
+
+.contact li {
+    font-size: 1.3em;
+    font-weight: 600;
+    display: inline;
+}
+
+.socials {
+    margin: 0;
     grid-column: 3/span 2;
     grid-row: 2/span 1;
-   
-   
-
 }
 
-#phoneIcon{
-    font-size: 20px;
-
-
+#phoneIcon {
+    font-size: 1.7em;
+    margin:0.03em 0;
 }
