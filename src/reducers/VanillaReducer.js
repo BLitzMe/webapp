@@ -1,7 +1,7 @@
 const VanillaReducer=(state={
     name: "John Doe's Post",
     postDate: "20-8-2018",
-    ort: "Rome baby"
+    ort: "Narnia Straße"
 }, action)=>{
     switch ((action.type)){
         case "SET_NAME":

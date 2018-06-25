@@ -1,32 +1,40 @@
-
-body{
-
+body {
     max-height: max-content;
-   
     max-width: 100vw;
 }
-#App{
+
+#App {
     display: grid;
     grid-template-columns: repeat(12, [col-start] 1fr);
-    grid-template-rows: 5em repeat(auto, auto);
- 
+
 }
-#fixedHeader {
-    grid-row: 1/2;
-    position: fixed;
+
+#header{
+    grid-column: 1/-1;
+    grid-row: 1/span 1;
 }
 
 #topBanner {
-    grid-column: 5/span 3;
+    grid-column: 5/span 4;
     grid-row: 2/3;
     margin-left: 2em;
-    
+    justify-self: start;
 }
-
 
 #postsContainer {
     grid-column: 1/ -1;
-    grid-row: 4/auto;
-   
+    grid-row: 4/10;
 }
 
+
+
+#footer {
+    grid-column: 1/-1;
+    grid-row: 10/span 2;
+    max-height: 10vh;
+}
+
+#newPostButton{
+    grid-column: 12/-1;
+    grid-row: 9/10;
+}

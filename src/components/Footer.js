@@ -1,19 +1,17 @@
 import React from 'react';
-import "./Styling/fixedHeader.css"
+import "./Styling/Footer.css"
 
-export class FixedHeader extends React.Component {
+export class Footer extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         return (
-            <div className="fixedHeader">
+            <div className="footerContainer">
                 <div className="icons">
                     {this.props.myIcons}
                 </div>
                 <div className="otherStuff">
-                    <input className="box searchBoxx" type="text" value="Lebensmittel finden" />
-                    <button className="box newPostButton">Neues Beitrag</button>
 
                 </div>
             </div>

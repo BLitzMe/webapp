@@ -5,24 +5,47 @@
     margin-right: 3em;
     margin-bottom: 2em;
 }
-
+#postsBucket:hover{
+    background-color: whitesmoke;
+}
 #postImage {
-    grid-column: 1/3;
-    grid-row: 2/3;
-    height: 10em !important;
-    width: 8em !important;
+    grid-column: 1/-1;
+    grid-row: 3/4;
+    height: 13em !important;
+    width: 11em !important;
     justify-self: center;
     justify-content: start !important;
     align-content: start !important;
     color: #373737;
 }
 
-.modal-header{
-    
-    display:grid !important;
+#mainPostName{
+    font-weight: 700;
+    font-family: 'Helvetica';
+    font-style: italic;
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    margin:0px;
+}
+
+#mainOrt{
+    font-size: 0.86em;
+    font-weight: 700;
+    font-family: 'Helvetica';
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    margin:0px;
+}
+
+
+/* modal classes */
+
+.modal-header {
+    display: grid !important;
     grid-template-columns: repeat(4, [col-start] 1fr) !important;
     padding: 0.2em !important;
 }
+
 #exampleModalLongTitle {
     grid-column: 1/-1;
     grid-row: 1/2;
@@ -34,19 +57,19 @@
     grid-row: 2/3;
     font-size: 0.7em;
     align-self: end;
-    margin-top:0.2em;
-    margin-bottom:0px;
+    margin-top: 0.2em;
+    margin-bottom: 0px;
 }
 
 #modalDate {
     font-size: 0.5em;
     grid-column: 1/-1;
     grid-row: 3/4;
-    margin-top:0.5em;
-    margin-bottom:0px;
+    margin-top: 0.5em;
+    margin-bottom: 0px;
 }
 
-#closeCross{
+#closeCross {
     grid-column: 1/-1;
     grid-row: 1/2;
     justify-self: top;

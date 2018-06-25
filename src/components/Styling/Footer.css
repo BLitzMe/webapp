@@ -3,22 +3,16 @@
     border: 0;
 }
 
-.fixedHeader {
+.footerContainer {
     display: grid;
     grid-template-columns: repeat(12, [col-start]1fr);
-    background-color: rgb(156, 177, 125);
+    background-color: rgb(154, 184, 46);
     width: 100vw;
     height: max-content;
     /*opacity: 0.9;*/
     grid-column-gap: 5px;
 }
 
-.icons {
-    grid-column: 1/span 4;
-    grid-row: 1/span1;
-    justify-self: start;
-    align-self: end;
-}
 
 .otherStuff {
     grid-column: 11/span 3;
@@ -40,7 +34,7 @@
     border-style: solid;
 }
 
-.box:hover{
+.box:hover {
     background-color: rgb(52, 77, 16);
 }
 

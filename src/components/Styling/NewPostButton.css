@@ -1,0 +1,22 @@
+#newPostButtonContainer {
+    margin-bottom: 2em;
+}
+
+#buttonIcon {
+    font-size: 4em;
+    color: rgb(154, 186, 46)
+}
+
+#postButton {
+    background-color:white
+}
+
+#buttonIcon:hover{
+    color:rgb(204, 14, 68)
+}
+
+/* #postButton:hover{
+    background-color: rgb(154, 186, 46)
+
+
+} */

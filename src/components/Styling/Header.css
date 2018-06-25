@@ -1,0 +1,24 @@
+#headerContainer {
+    display: grid;
+    grid-template-columns: repeat(12, [col-start]1fr);
+    background-color: whitesmoke;   
+}
+
+#logo{
+   grid-column: 1/-1;
+    grid-row: 1/span 1;
+    height: 5em;
+    
+    
+}
+
+
+
+.icons {
+    grid-column:11/span 2;
+    grid-row: 1/span1;
+    justify-self: start;
+    align-self: end;
+}
+
+
