@@ -4,7 +4,7 @@ import { TopBanner } from '../components/TopBanner';
 import { PostsContainer } from "../components/PostsContainer";
 import Post from "../containers/Post"
 import { Footer } from "../components/Footer";
-import Icons from "../containers/icons/icons"
+import Icons from "../components/icons/icons"
 import { NewPostButton } from "../components/NewPostButton"
 import { Header } from "../components/Header"
 class App extends React.Component {
