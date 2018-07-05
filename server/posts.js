@@ -1,7 +1,11 @@
 //imports
 var fs = require('fs');
-var url = require('url');
 var Datastore = require('nedb');
+var postsDBpath = "posts.db";
+
+if (false === fs.existsSync(postsDBpath)) {
+	createMockDatabase();
+}
 
 //defining the scope for calls from external files
 module.exports = { 
@@ -12,13 +16,8 @@ module.exports = {
 
 //handling the call
 function handleCall(request, response) {
-	console.log(new Date().toISOString() + " /posts was called...");
-	
-	
-	if (false === fs.existsSync("posts.db")) {
-		createMockDatabase();
-	}
-	
+	console.log(new Date().toISOString() + " /posts was called with query " + JSON.stringify(request.query));
+			
 	var startingPost = 0;
 	if (request.query.start)	
 		startingPost = parseInt(request.query.start);
@@ -34,17 +33,17 @@ function handleCall(request, response) {
 		response.write(JSON.stringify(docs));
 		response.end();
 		
-		console.log(new Date().toISOString() + " response send");
+		console.log(new Date().toISOString() + " response send with " + docs.length + " items");
 		
 	});
 }
 
 
 
-function createMockDatabase(postDBpath) {
+function createMockDatabase() {
 	
 	console.log("creating new database...");
-    postDB = new Datastore({ filename: "posts.db", autoload: true });	
+    postDB = new Datastore({ filename: postsDBpath, autoload: true });	
 	
 	for(i = 99; i >=0; i--) {
 		item = {};
