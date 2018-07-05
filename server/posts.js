@@ -14,6 +14,11 @@ module.exports = {
 function handleCall(request, response) {
 	console.log(new Date().toISOString() + " /posts was called...");
 	
+	
+	if (false === fs.existsSync("posts.db")) {
+		createMockDatabase();
+	}
+	
 	var startingPost = 0;
 	if (request.query.start)	
 		startingPost = parseInt(request.query.start);
@@ -32,6 +37,31 @@ function handleCall(request, response) {
 		console.log(new Date().toISOString() + " response send");
 		
 	});
+}
+
+
+
+function createMockDatabase(postDBpath) {
+	
+	console.log("creating new database...");
+    postDB = new Datastore({ filename: "posts.db", autoload: true });	
+	
+	for(i = 99; i >=0; i--) {
+		item = {};
+		item.title = "Leckere Tomaten " + i;		
+		item.location = "Clausthal-Zellerfeld";
+		item.picture = "/img/tomatoes.png";
+		item.user = "testuser";		
+		item.date = new Date();
+		
+		postDB.insert(item, function (err, newDoc) {});
+		
+		console.log("item " + i +" created");
+		
+		for(n = 0; n < 50000000; n++);
+	}  
+	
+	console.log("new database created.");
 }
 
 
