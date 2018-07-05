@@ -15,7 +15,7 @@ var server = express();
 server.get("/posts", postsAPI.handlePostsAPICall);
 
 server.listen(3001);
-
+console.log("server active. waiting for connections...")
 
 
 
