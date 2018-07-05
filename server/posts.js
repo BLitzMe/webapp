@@ -22,7 +22,7 @@ function handleCall(request, response) {
 	if (request.query.start)	
 		startingPost = parseInt(request.query.start);
 	
-	postDB = new Datastore({ filename: "posts.db", autoload: true });
+	postDB = new Datastore({ filename: postsDBpath, autoload: true });
 	postDB.find({"location" : request.query.location}).sort({date: -1}).exec(function(err, docs) {
 		
 		console.log(new Date().toISOString() + " found " + docs.length + " entries for location \"" + request.query.location + "\". starting Post is " + startingPost);
