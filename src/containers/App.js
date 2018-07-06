@@ -19,7 +19,7 @@ class App extends React.Component {
       apiRequest () {
         axios.get('/posts?location=Clausthal-Zellerfeld')
           .then(response => {
-            console.log(response.title);
+            console.log(JSON.stringify(response.data[0]._id));
           })
           .catch(e => {
             console.log(e);
