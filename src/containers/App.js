@@ -7,30 +7,69 @@ import { Footer } from "../components/Footer";
 import Icons from "../components/icons/icons"
 import { NewPostButton } from "../components/NewPostButton"
 import { Header } from "../components/Header"
+import { getState } from 'redux';
+import { connect } from "react-redux";
+import Loader from "./Loader"
+import axios from "axios"
 class App extends React.Component {
+    componentWillMount () {
+        this.apiRequest();
+      }
+      
+      apiRequest () {
+        axios.get('/posts?location=Clausthal-Zellerfeld')
+          .then(response => {
+            console.log(response.title);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }
     myPost = <Post />;
     myIcons = <Icons />;
     render() {
+        const postProps = this.props.post;
+        const status = "notLoading";
         return (
+
             <div id="App">
-                <div id="header">
-                    <Header myIcons={this.myIcons}/>
-                </div>
-                <div id="topBanner">
-                    <TopBanner />
-                </div>
-                <div id="postsContainer">
-                    <PostsContainer myPost={this.myPost} />
-                </div>
-                <div id="newPostButton">
-                    <NewPostButton />
-                </div>
-                <div id="footer">
-                    <Footer  />
-                </div>
+                {status === "loading" ? (
+                    <Loader />
+                ) : (
+                        <div id="AppReal">
+                            <div id="header">
+                                <Header myIcons={this.myIcons} />
+                            </div>
+                            <div id="topBanner">
+                                <TopBanner />
+                            </div>
+                            <div id="postsContainer">
+                                <PostsContainer myPost={this.myPost} />
+                            </div>
+                            <div id="newPostButton">
+                                <NewPostButton />
+                            </div>
+                            <div id="footer">
+                                <Footer />
+                            </div>
+                        </div>
+                    )}
+
             </div>
         );
     }
 }
 
-export default App;
+const mapDispatchToProps = (state) => {
+    return {
+        post: state.vR
+
+    }
+}
+const mapStateToProps = (state) => {
+    return {
+        post: state.vR
+
+    }
+}
+export default connect(mapStateToProps)(App)

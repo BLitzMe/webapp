@@ -3,7 +3,7 @@ body {
     max-width: 100vw;
 }
 
-#App {
+#AppReal {
     display: grid;
     grid-template-columns: repeat(12, [col-start] 1fr);
 
