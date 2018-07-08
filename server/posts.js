@@ -77,6 +77,7 @@ function createMockDatabase() {
 		item.picture = "http://localhost:3002/img/tomatoes.jpg";
 		item.user = "testuser";		
 		item.date = new Date();
+        item.valid = true;
 		
 		postDB.insert(item, function (err, newDoc) {});
 		

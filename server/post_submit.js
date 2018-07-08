@@ -18,7 +18,11 @@ module.exports = {
 //handling the call
 function handleCall(request, response) {
 	console.log(new Date().toISOString() + " /posts/submit was called with query " + JSON.stringify(request.query));
-	
+		
+	var postDB = new Datastore({ filename: postsDBpath, autoload: true });
+	var commentsDB = new Datastore({ filename: commentsDBpath, autoload: true });
+    
+    
 	// query parameters:
 	// user 
 	// title
@@ -27,33 +31,114 @@ function handleCall(request, response) {
 	// picture
 	//example: http://localhost:3001/posts/submit?location=Clausthal-Zellerfeld&user=testuser&title=asdfgh&description=qwertzuiop
 	
-	//todo: check inputs, catch errors, debug/logging output
+	//todo:  documentation
+    
+    //check inputs
+    if (!request.query.user)
+        error400("no username");    
+    else if (typeof request.query.user != "string")
+        error400("username no string");        
+    else if (request.query.user.length > 100)
+        error400("username too long");
+    
+    if (!request.query.title)
+        error400("no title");    
+    else if (typeof request.query.title != "string")
+        error400("title no string");        
+    else if (request.query.title.length > 100)
+        error400("title too long");
+    
+    if (!request.query.description)
+        error400("no title");    
+    else if (typeof request.query.description != "string")
+        error400("title no string");        
+    else if (request.query.description.length > 500)
+        error400("title too long");
+    
+    if (!request.query.location)
+        error400("no username");    
+    else if (typeof request.query.location != "string")
+        error400("username no string");        
+    else if (request.query.location.length > 100)
+        error400("username too long");
+    
+    
+    if (response.statuscode === 400) {
+        console.log(new Date().toISOString() + " found errors in query parameters, sending 400");
+        response.end();
+        return;        
+    }        
+    
+    console.log(new Date().toISOString() + " query parameters were ok, starting creation of new post...");
+    
+    //compose post document
 	post = {};
 	post.user = request.query.user;
 	post.title = request.query.title;
 	post.location = request.query.location;
 	post.picture = request.query.picture;
 	post.date = new Date();
-	var description = request.query.description;
-	
-	
-	var postDB = new Datastore({ filename: postsDBpath, autoload: true });
-	var commentsDB = new Datastore({ filename: commentsDBpath, autoload: true });
-			
-	postDB.insert(post, function (err, newDoc) {
-		comment = {};
-		comment.text = description;	
-		comment.user = newDoc.user;	
-		comment.date = new Date();
-		comment.postID = newDoc._id;
+    post.valid = false;
+    
+    //compose comment document
+    comment = {};
+    comment.text = request.query.description;;	
+    comment.user = request.query.user;	
+    comment.date = new Date();
+    
+    //first: create new post document in posts database with valid set to false
+	postDB.insert(post, function (err, newPost) {
+        if (err) {
+            error500(err, "new post");
+            return;
+        }
+        
+        console.log(new Date().toISOString() + " new post created with id " + newPost._id);
+        
+        //update comment object with id of post
+		comment.postID = newPost._id;
 		
-		commentsDB.insert(comment, function (err, newDoc) {});
-		
-		
-		response.writeHead(200, {'Content-Type': 'text/html'});
-		response.end();
+        //second: create new comment document in comments database linked to _id of new post document
+		commentsDB.insert(comment, function (err, newComment) {      
+            if (err) {
+                error500(err, "new comment");
+                return;
+            }
+            
+            console.log(new Date().toISOString() + " new comment created with id " + newComment._id);
+            
+            //third: set valid value of new post document in posts database to true
+            postDB.update({_id:newPost._id}, {valid: true}, {}, function (err, numReplaced) {
+                if (err) {
+                    error500(err, "make post valid");
+                    return;
+                }
+                
+                console.log(new Date().toISOString() + " post " + newPost._id + " set to valid");
+                
+                //forth: return response to user
+                response.writeHead(200, {'Content-Type': 'text/html'});
+                response.end();
+                
+                console.log(new Date().toISOString() + " 200 sent to caller");
+            });
+        });	
 	});	
+    
+    
+    function error400(err) {
+        if (err) {
+            response.statuscode = 400;
+            console.log(new Date().toISOString() + ": " + "found problem in query: " + err);            
+            response.write(err);
+        }
+    }
+
+    function error500(err, location) {
+        if (err) {
+            console.log(new Date().toISOString() + ": " + location + ": " + err);
+            response.writeHead(500, {'Content-Type': 'text/html'});
+            response.end();
+        }
+    }
 }
-
-
-
