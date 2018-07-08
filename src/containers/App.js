@@ -11,17 +11,25 @@ import { getState } from 'redux';
 import { connect } from "react-redux";
 import Loader from "./Loader"
 import axios from "axios"
+import {FetchFailure} from "../actions/VanillaActions"
+import {LoadPosts} from "../actions/VanillaActions"
+import {FetchPosts} from "../actions/VanillaActions"
 class App extends React.Component {
     componentWillMount () {
         this.apiRequest();
+        this.dispatchFetchRequest();
       }
-      
+      dispatchFetchRequest(){
+          this.props.FetchPosts
+      }
       apiRequest () {
         axios.get('/posts?location=Clausthal-Zellerfeld')
           .then(response => {
-            console.log(JSON.stringify(response.data[0]._id));
+              this.props.LoadPosts;
+            console.log(response);
           })
           .catch(e => {
+              this.props.FetchFailure;
             console.log(e);
           });
       }
@@ -60,9 +68,17 @@ class App extends React.Component {
     }
 }
 
-const mapDispatchToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        post: state.vR
+        FetchPosts: ()=>{
+            dispatch(FetchPosts())
+        } ,
+        LoadPosts: (posts)=>{
+            dispatch(LoadPosts(posts))
+        },
+        FetchFailure: (error)=>{
+            dispatch(FetchFailure(error))
+        }
 
     }
 }
