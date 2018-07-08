@@ -15,6 +15,8 @@ import {FetchFailure} from "../actions/VanillaActions"
 import {LoadPosts} from "../actions/VanillaActions"
 import {FetchPosts} from "../actions/VanillaActions"
 import createStore from "../Store"
+import {NewPostButtonOn} from "../actions/ToggleActions"
+import {NewPostButtonOff} from "../actions/ToggleActions"
 class App extends React.Component {
     store =createStore
     componentWillMount () {
@@ -37,7 +39,14 @@ class App extends React.Component {
           });
       }
       
-      i = "some name"
+      newPostButtonHandler=(props)=>{
+          if(props.toggle.NewPostButton==="Off"){
+              props.newPostButtonOnDispatcher
+          }else if (props.toggle.NewPostButton==="On"){
+              props.newPostButtonOffDispatcher
+          }
+
+      }
     
     myIcons = <Icons />;
     render() {
@@ -60,7 +69,7 @@ class App extends React.Component {
                                 <PostsContainer />
                             </div>
                             <div id="newPostButton">
-                                <NewPostButton />
+                                <NewPostButton onClick={this.newPostButtonHandler}/>
                             </div>
                             <div id="footer">
                                 <Footer />
@@ -84,13 +93,20 @@ const mapDispatchToProps = (dispatch) => {
         },
         fetchFailure: (error)=>{
             dispatch(FetchFailure(error))
+        },
+        newPostButtonOnDispatcher: ()=>{
+            dispatch(NewPostButtonOn)
+        },
+        newPostButtonOffDispatcher:()=>{
+            dispatch(NewPostButtonOff)
         }
 
     }
 }
 const mapStateToProps = (state) => {
     return {
-        post: state.vR
+        post: state.vR,
+        toggle: state.tR
 
     }
 }

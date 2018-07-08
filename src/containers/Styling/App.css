@@ -6,10 +6,9 @@ body {
 #AppReal {
     display: grid;
     grid-template-columns: repeat(12, [col-start] 1fr);
-
 }
 
-#header{
+#header {
     grid-column: 1/-1;
     grid-row: 1/span 1;
 }
@@ -26,15 +25,15 @@ body {
     grid-row: 4/10;
 }
 
-
-
 #footer {
     grid-column: 1/-1;
     grid-row: 10/span 2;
     max-height: 10vh;
 }
 
-#newPostButton{
-    grid-column: 12/-1;
-    grid-row: 9/10;
+#newPostButton {
+   position:fixed;
+   left: 90vw;
+   top: 87vh;
+
 }
