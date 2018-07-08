@@ -3,9 +3,10 @@ gives a list of 20 offerings, in the order they should be displayed
 accepts get and post requests
 
 query inputs:
-- location: string - required. the result will only return posts with this location (exact string match)
-- start: optional - if given, we don't send posts 0-19, but posts start-start+19.
+- location: string - optional. if given the result will only return posts with this location (exact string match)
+- start: int - optional. if given, we don't send posts 0-19, but posts start-start+19.
 example: /posts?location=Clausthal-Zellerfeld&start=17   for posts 17-36 in Clausthal-Zellerfeld
+/posts for posts 0-20 anywhere
 
 response: json with an array of objects with the following attributes:
 - title: string - the title of the offering
