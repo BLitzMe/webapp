@@ -16,7 +16,7 @@ class PostsContainer extends React.Component {
       postsList = posts.map((localPost) => {
         return (
           <li key={localPost._id}>
-            <Post  title={localPost.title} ort={localPost.location}  date={localPost.date} picture={localPost.picture}/>
+	  <Post  title={localPost.title} ort={localPost.location}  date={localPost.date} picture={localPost.picture} description={localPost.description} comments={localPost.comments}/>
           </li>
         );
       });
