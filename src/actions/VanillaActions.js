@@ -20,7 +20,7 @@ export function setOrt(ort){
 }
 
 //define action within an action creator
-export function FetchRequest() {
+export function FetchPosts() {
     const FETCH_POSTS = 'FETCH_POSTS'
     return {
       type: FETCH_POSTS,
@@ -29,12 +29,12 @@ export function FetchRequest() {
   }
 
   //define action within an action creator
-export function FetchSuccess(streams) {
-    const FETCH_Success = 'FETCH_SUCCESS'
+export function LoadPosts(posts) {
+    const FETCH_SUCCESS = 'FETCH_SUCCESS'
     return {
       type: FETCH_SUCCESS,
       status: "success",
-      streams
+      posts: posts
     }
   }
 

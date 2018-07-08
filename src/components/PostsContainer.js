@@ -10,8 +10,11 @@ export class PostsContainer extends React.Component {
         };
     }
     render() {
+        let i;
         return (
+           
             <div id="postsContainer">
+             for(i=0; i <20;i++){
                 <li>{this.props.myPost}</li>
                 <li>{this.props.myPost}</li>
                 <li>{this.props.myPost}</li>
@@ -41,6 +44,7 @@ export class PostsContainer extends React.Component {
                 <li>{this.props.myPost}</li>
                 <li>{this.props.myPost}</li>
                 <li>{this.props.myPost}</li>
+             }
             </div>
         );
     }
