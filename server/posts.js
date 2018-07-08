@@ -20,39 +20,48 @@ function handleCall(request, response) {
 	
 	// query parameters:
 	// start: optional. if given, we don't send posts 0-19, but posts start-start+19.
-	// location: required. the result will only include posts with this location (exact string match)
+	// location: optional. if given the result will only include posts with this location (exact string match)
 		
+	postDB = new Datastore({ filename: postsDBpath, autoload: true });
+    
+    if (request.query.location)
+        postDB.find({"location" : request.query.location}).sort({date: -1}).exec(function(err, docs) {
+            sendData(request, response, err, docs)			
+        });
+    else
+        postDB.find({}).sort({date: -1}).exec(function(err, docs) {
+            sendData(request, response, err, docs)			
+        });
+}
+
+function sendData(request, response, err, docs) {
+    if (err) {
+        console.log(new Date().toISOString() + " " + err);
+        response.writeHead(500, {'Content-Type': 'text/html'});
+        response.end();
+        return;
+    }
+    
+    if (docs.length < 1){
+            console.log(new Date().toISOString() + " couldn't find posts for location " + request.query.location + ", returning 404");
+            response.writeHead(404, {'Content-Type': 'text/html'});
+            response.end();
+            return;
+    }
+        
 	var startingPost = 0;
 	if (request.query.start)	
 		startingPost = parseInt(request.query.start);
-	
-	
-	postDB = new Datastore({ filename: postsDBpath, autoload: true });
-	postDB.find({"location" : request.query.location}).sort({date: -1}).exec(function(err, docs) {
-		
-		if (err) {
-			console.log(new Date().toISOString() + " " + err);
-			response.writeHead(500, {'Content-Type': 'text/html'});
-			response.end();
-			return;
-		}
-		
-		if (docs.length < 1){
-				console.log(new Date().toISOString() + " couldn't find comments for location " + request.query.location + ", returning 404");
-				response.writeHead(404, {'Content-Type': 'text/html'});
-				response.end();
-				return;
-			}
-		console.log(new Date().toISOString() + " found " + docs.length + " entries for location \"" + request.query.location + "\". starting Post is " + startingPost);
-		
-		docs = docs.slice(startingPost, startingPost + 20);
-		
-		response.writeHead(200, {'Content-Type': 'text/html'});
-		response.write(JSON.stringify(docs));
-		response.end();
-		
-		console.log(new Date().toISOString() + " response send with " + docs.length + " items");		
-	});
+    
+    console.log(new Date().toISOString() + " found " + docs.length + " entries for location \"" + request.query.location + "\". starting Post is " + startingPost);
+    
+    docs = docs.slice(startingPost, startingPost + 20);
+    
+    response.writeHead(200, {'Content-Type': 'text/html'});
+    response.write(JSON.stringify(docs));
+    response.end();
+    
+    console.log(new Date().toISOString() + " response send with " + docs.length + " items");	
 }
 
 //helper functions
