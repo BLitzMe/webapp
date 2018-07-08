@@ -1,7 +1,8 @@
 const initialState = {
     status: "",
     posts: [],
-    error: ""
+    error: "",
+    ort: "narnia"
   }
 const VanillaReducer=(state={
   initialState

@@ -1,51 +1,34 @@
-import React from 'react';
-import './Styling/PostsContainer.css';
+import React from "react";
+import "./Styling/PostsContainer.css";
+import { connect } from "react-redux";
+import Post from "../containers/Post";
 
-
-
-export class PostsContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
-    render() {
-        let i;
+class PostsContainer extends React.Component {
+  myPost = <Post />;
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    let posts = this.props.post.posts;
+    let postsList;
+    if (posts) {
+      postsList = posts.map((localPost) => {
         return (
-           
-            <div id="postsContainer">
-             for(i=0; i <20;i++){
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-                <li>{this.props.myPost}</li>
-             }
-            </div>
+          <li key={localPost._id}>
+            <Post  title={localPost.title} ort={localPost.location}  date={localPost.date} picture={localPost.picture}/>
+          </li>
         );
+      });
     }
+    return <ul id="postsContainer">{postsList}</ul>;
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    post: state.vR
+  };
+};
+
+export default connect(mapStateToProps)(PostsContainer);

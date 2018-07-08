@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Styling/App.css"
 import { TopBanner } from '../components/TopBanner';
-import { PostsContainer } from "../components/PostsContainer";
+import PostsContainer from "../components/PostsContainer";
 import Post from "../containers/Post"
 import { Footer } from "../components/Footer";
 import Icons from "../components/icons/icons"
@@ -14,30 +14,35 @@ import axios from "axios"
 import {FetchFailure} from "../actions/VanillaActions"
 import {LoadPosts} from "../actions/VanillaActions"
 import {FetchPosts} from "../actions/VanillaActions"
+import createStore from "../Store"
 class App extends React.Component {
+    store =createStore
     componentWillMount () {
+        
         this.apiRequest();
         this.dispatchFetchRequest();
       }
       dispatchFetchRequest(){
-          this.props.FetchPosts
+          this.props.fetchPosts
       }
       apiRequest () {
         axios.get('/posts?location=Clausthal-Zellerfeld')
           .then(response => {
-              this.props.LoadPosts;
-            console.log(response);
+             this.props.loadPosts(response.data);
+            console.log(response.data);
           })
           .catch(e => {
-              this.props.FetchFailure;
+              this.props.fetchFailure(e);
             console.log(e);
           });
       }
-    myPost = <Post />;
+      
+      i = "some name"
+    
     myIcons = <Icons />;
     render() {
         const postProps = this.props.post;
-        const status = "notLoading";
+        const status = postProps.status;
         return (
 
             <div id="App">
@@ -52,7 +57,7 @@ class App extends React.Component {
                                 <TopBanner />
                             </div>
                             <div id="postsContainer">
-                                <PostsContainer myPost={this.myPost} />
+                                <PostsContainer />
                             </div>
                             <div id="newPostButton">
                                 <NewPostButton />
@@ -68,15 +73,16 @@ class App extends React.Component {
     }
 }
 
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        FetchPosts: ()=>{
+        fetchPosts: ()=>{
             dispatch(FetchPosts())
         } ,
-        LoadPosts: (posts)=>{
+        loadPosts: (posts)=>{
             dispatch(LoadPosts(posts))
         },
-        FetchFailure: (error)=>{
+        fetchFailure: (error)=>{
             dispatch(FetchFailure(error))
         }
 
@@ -88,4 +94,4 @@ const mapStateToProps = (state) => {
 
     }
 }
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(App)
