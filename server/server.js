@@ -2,9 +2,11 @@
 var express = require('express');
 var postsAPI = require('./posts.js');
 var commentsAPI = require('./comments.js');
+var postSubmitAPI = require('./post_submit.js');
 
 var server = express();
 
+server.get("/posts/submit", postSubmitAPI.handlePostSubmitAPICall);
 server.get("/posts", postsAPI.handlePostsAPICall);
 server.get("/comments", commentsAPI.handleCommentsAPICall);
 
