@@ -71,17 +71,12 @@ function sendData(request, response, err, posts) {
 		} 
 	}).sort({date: -1}).exec(function(err, comments) {
 		for (post of posts) {
-			postComments = [];
+			post.comments = [];
 			for (comment of comments)			
 				if (comment.postID == post._id)
-					postComments.push(comment);
+					post.comments.push(comment);
 				
-			post.description = postComments.pop().text;
-			
-			postComment = "";
-			for (comment of postComments)
-				postComment = postComment + comment.text + "\n";
-			post.comments = postComment;
+			post.description = post.comments.pop().text;			
 		}
 		//end of nasty hack.
 		//=============================		

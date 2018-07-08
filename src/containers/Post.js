@@ -12,6 +12,10 @@ class Post extends React.Component {
     }
     
     render() {
+		console.log(this.props.comments);
+		const commentItems = this.props.comments.map(function(comment) {
+			return (<p id="modalComment">{comment.user + ": " + comment.text}</p>);
+		});
         
         return (
              
@@ -36,7 +40,7 @@ class Post extends React.Component {
                                     <img id="modalImage" src={this.props.picture} alt="" />
                                     <h6 id="desc-title">Beschreibung</h6>
                                     <p id="description">{this.props.description}</p>
-									<p id="comments">{this.props.comments}</p>
+									{commentItems}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" >Close</button>
