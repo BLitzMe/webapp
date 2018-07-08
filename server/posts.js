@@ -74,7 +74,7 @@ function createMockDatabase() {
 		item = {};
 		item.title = "Leckere Tomaten " + i;		
 		item.location = "Clausthal-Zellerfeld";
-		item.picture = "/img/tomatoes.png";
+		item.picture = "http://localhost:3002/img/tomatoes.jpg";
 		item.user = "testuser";		
 		item.date = new Date();
 		

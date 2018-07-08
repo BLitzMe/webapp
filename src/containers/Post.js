@@ -19,7 +19,7 @@ class Post extends React.Component {
                 <p id="mainPostName">{this.props.title}</p>
                 <p id="mainOrt">{this.props.ort}</p>
                 <p id="mainDate">{this.props.date} </p>
-                <img id="postImage" src={require(`${this.props.picture}`)} alt="" />
+                <img id="postImage" src={this.props.picture} alt="" />
               
                     <div class="modal " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">

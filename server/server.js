@@ -1,7 +1,7 @@
+//apiserver
 var express = require('express');
 var postsAPI = require('./posts.js');
 var commentsAPI = require('./comments.js');
-
 
 var server = express();
 
@@ -9,4 +9,31 @@ server.get("/posts", postsAPI.handlePostsAPICall);
 server.get("/comments", commentsAPI.handleCommentsAPICall);
 
 server.listen(3001);
-console.log("server active. waiting for connections...")
+console.log("api server active. waiting for connections...")
+
+
+
+
+//imageserver
+var fs = require('fs');
+var url = require('url'); 
+var http = require('http');
+
+http.createServer(function (req, res) {	
+  path = "." + url.parse(req.url, true).pathname;  
+  
+  fs.readFile(path, function(err, data) {
+    if (err || (!path.startsWith("./img/"))) {
+	  console.log(new Date().toISOString() + " can't find image " + path + " returning 404");
+      res.writeHead(404, {'Content-Type': 'image/jpg'});
+      return res.end();
+    } 
+	console.log(new Date().toISOString() + " returning image " + path);
+    res.writeHead(200, {'content-type': 'image/jpg'});
+    res.write(data);
+    return res.end();
+  });
+    
+}
+).listen(3002);
+console.log("image server active. waiting for connections...")
