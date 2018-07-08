@@ -4,9 +4,6 @@ var Datastore = require('nedb');
 var postsDBpath = "posts.db";
 var commentsDBpath = "comments.db";
 
-if (false === fs.existsSync(postsDBpath)) {
-	createMockDatabase();
-}
 
 //defining the scope for calls from external files
 module.exports = { 
@@ -108,7 +105,7 @@ function handleCall(request, response) {
             console.log(new Date().toISOString() + " new comment created with id " + newComment._id);
             
             //third: set valid value of new post document in posts database to true
-            postDB.update({_id:newPost._id}, {valid: true}, {}, function (err, numReplaced) {
+            postDB.update({_id:newPost._id}, {$set:{valid: true}}, {}, function (err, numReplaced) {
                 if (err) {
                     error500(err, "make post valid");
                     return;

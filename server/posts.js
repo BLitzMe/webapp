@@ -98,7 +98,7 @@ function createMockDatabase() {
 	console.log("creating new post database...");
     postDB = new Datastore({ filename: postsDBpath, autoload: true });	
 	
-	for(i = 99; i >=0; i--) {
+	for(i = 30; i >=0; i--) {
 		item = {};
 		item.title = "Leckere Tomaten " + i;		
 		item.location = "Clausthal-Zellerfeld";
