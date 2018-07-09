@@ -96,7 +96,7 @@ class PostInputMask extends React.Component {
             <Form inline onSubmit={this.onSubmit}>
               <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                 <Label for="exampleEmail" className="mr-sm-2">
-                  Titel des Posts
+                  Titel
                 </Label>
                 <Input
                   type="text"
