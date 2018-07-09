@@ -26,7 +26,7 @@ export function setDescription(description) {
 }
 export function setTitle(title) {
     return {
-        type: "SET_Title",
+        type: "SET_TITLE",
         payload: title
     }
 }

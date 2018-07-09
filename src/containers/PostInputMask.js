@@ -74,6 +74,7 @@ class PostInputMask extends React.Component {
       }
     }).then((res)=>{
       console.log(res)
+      console.log("fake tits")
     })
   };
 
@@ -104,6 +105,7 @@ class PostInputMask extends React.Component {
                   id="exampleEmail"
                   placeholder="Was?"
                   onChange={this.sendTitle}
+                  
                 />
               </FormGroup>
               <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
