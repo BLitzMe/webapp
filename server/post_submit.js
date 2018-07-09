@@ -25,10 +25,9 @@ function handleCall(request, response) {
 	// title
 	// description
 	// location
-	// picture
 	//example: http://localhost:3001/posts/submit?location=Clausthal-Zellerfeld&user=testuser&title=asdfgh&description=qwertzuiop
 	
-	//todo:  documentation
+	//todo:  documentation, input data sanitation
     
     //check inputs
     if (!request.query.user)
@@ -53,11 +52,11 @@ function handleCall(request, response) {
         error400("title too long");
     
     if (!request.query.location)
-        error400("no username");    
+        error400("no location");    
     else if (typeof request.query.location != "string")
-        error400("username no string");        
+        error400("location no string");        
     else if (request.query.location.length > 100)
-        error400("username too long");
+        error400("location too long");
     
     
     if (response.statuscode === 400) {
@@ -114,8 +113,8 @@ function handleCall(request, response) {
                 console.log(new Date().toISOString() + " post " + newPost._id + " set to valid");
                 
                 //forth: return response to user
-                response.writeHead(200, {'Content-Type': 'text/html'});
-                response.end();
+                response.writeHead(200, {'Content-Type': 'text/html'});				
+                response.end(newPost._id);
                 
                 console.log(new Date().toISOString() + " 200 sent to caller");
             });

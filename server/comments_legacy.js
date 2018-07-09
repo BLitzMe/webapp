@@ -93,7 +93,7 @@ function createMockDatabase() {
 			for (id of ids) {
 				item = {};
 				item.text = "alles supertoll nummer " + i;	
-				item.user = "testuser";		
+				item.user = "testkommentator " + i;		
 				item.date = new Date();
 				item.postID = id;
 				
