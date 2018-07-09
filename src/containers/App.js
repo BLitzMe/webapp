@@ -50,7 +50,6 @@ class App extends React.Component {
               <Header myIcons={this.myIcons} />
             </div>
             <div id="topBanner">
-              <TopBanner />
             </div>
             <div id="postsContainer">
               <PostsContainer />

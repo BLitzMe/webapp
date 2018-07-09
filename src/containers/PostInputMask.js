@@ -25,7 +25,7 @@ class PostInputMask extends React.Component {
   }
   componentDidUpdate() {}
   newPostModalMetaData = {
-    modalTitle: "Create New Post",
+    modalTitle: "Neues Angebot erstellen",
     nameLabel: "Who is Posting?",
     locationLabel: "Where are you posting from",
     pictureLabel: "Upload Picture",
@@ -33,8 +33,8 @@ class PostInputMask extends React.Component {
   };
 
   imageToUploadHandler=(event)=>{
-    console.log(event.taget.files[0])
   }
+  
   render() {
     return (
       <div>
@@ -85,20 +85,34 @@ class PostInputMask extends React.Component {
                   placeholder="Wo?"
                 />
               </FormGroup>
+			  <FormGroup className="asd">
+				<Label for="examplePassword" className="mr-sm-2">
+                  Beschreibung
+                </Label>
+				<Input
+                  type="textarea"
+                  name="text"
+                  id="examplePassword"
+                  placeholder="Was genau?"
+                />
+			  </FormGroup>
               
             </Form>
             <FormGroup>
+				<Label for="examplePassword" className="mr-sm-2">
+                  Bild
+                </Label>
               <Label>
                 <input type="file" id="uploadImage" onChange={this.imageToUploadHandler}/>
               </Label>
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              Los!
-            </Button>
             <Button color="secondary" onClick={this.cancelAndGoBackToMain}>
-              Cancel
+              Abbrechen
+            </Button>
+            <Button color="primary" onClick={this.toggle}>
+              Absenden
             </Button>
           </ModalFooter>
         </Modal>

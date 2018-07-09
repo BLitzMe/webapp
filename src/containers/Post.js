@@ -40,11 +40,11 @@ class Post extends React.Component {
                                     <img id="modalImage" src={this.props.picture} alt="" />
                                     <h6 id="desc-title">Beschreibung</h6>
                                     <p id="description">{this.props.description}</p>
+									<h6 id="desc-title">Kommentare</h6>
 									{commentItems}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" >Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-secondary" >Schließen</button>
                                 </div>
                             </div>
                         </div>
