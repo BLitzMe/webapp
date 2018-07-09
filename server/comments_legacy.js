@@ -89,11 +89,11 @@ function createMockDatabase() {
 		
 		console.log("creating dummy comments for " + ids.length + " posts");
 		
-		for(i = 0; i <100; i++) {
+		for(i = 0; i <5; i++) {
 			for (id of ids) {
 				item = {};
 				item.text = "alles supertoll nummer " + i;	
-				item.user = "testuser";		
+				item.user = "testkommentator " + i;		
 				item.date = new Date();
 				item.postID = id;
 				

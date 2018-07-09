@@ -21,7 +21,8 @@ class PostsContainer extends React.Component {
               ort={localPost.location}
               date={localPost.date}
               picture={localPost.picture}
-            
+              description={localPost.description}
+              comments={localPost.comments}
             />
           </li>
         );

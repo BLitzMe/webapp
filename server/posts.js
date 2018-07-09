@@ -34,7 +34,7 @@ function handleCall(request, response) {
         });
 }
 
-function sendData(request, response, err, docs) {
+function sendData(request, response, err, posts) {
     if (err) {
         console.log(new Date().toISOString() + " " + err);
         response.writeHead(500, {'Content-Type': 'text/html'});
@@ -42,7 +42,7 @@ function sendData(request, response, err, docs) {
         return;
     }
     
-    if (docs.length < 1){
+    if (posts.length < 1){
             console.log(new Date().toISOString() + " couldn't find posts for location " + request.query.location + ", returning 404");
             response.writeHead(404, {'Content-Type': 'text/html'});
             response.end();
@@ -53,15 +53,38 @@ function sendData(request, response, err, docs) {
 	if (request.query.start)	
 		startingPost = parseInt(request.query.start);
     
-    console.log(new Date().toISOString() + " found " + docs.length + " entries for location \"" + request.query.location + "\". starting Post is " + startingPost);
+    console.log(new Date().toISOString() + " found " + posts.length + " entries for location \"" + request.query.location + "\". starting Post is " + startingPost);
     
-    docs = docs.slice(startingPost, startingPost + 20);
-    
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    response.write(JSON.stringify(docs));
-    response.end();
-    
-    console.log(new Date().toISOString() + " response send with " + docs.length + " items");	
+    posts = posts.slice(startingPost, startingPost + 20);
+	
+	
+	//nasty hack to make /comments endpoint obsolete
+	//=============================
+	
+	var commentsDBpath = "comments.db";
+	var commentsDB = new Datastore({ filename: commentsDBpath, autoload: true });	
+	commentsDB.find({ $where: function () { 
+		for(post of posts) 
+			if (post._id == this.postID) 
+				return true; 
+			return false; 
+		} 
+	}).sort({date: -1}).exec(function(err, comments) {
+		for (post of posts) {
+			post.comments = [];
+			for (comment of comments)			
+				if (comment.postID == post._id)
+					post.comments.push(comment);
+				
+			post.description = post.comments.pop().text;			
+		}
+		//end of nasty hack.
+		//=============================		
+		response.writeHead(200, {'Content-Type': 'text/html'});
+		response.write(JSON.stringify(posts));
+		response.end();
+		console.log(new Date().toISOString() + " response send with " + posts.length + " items");
+    });
 }
 
 //helper functions
@@ -70,13 +93,14 @@ function createMockDatabase() {
 	console.log("creating new post database...");
     postDB = new Datastore({ filename: postsDBpath, autoload: true });	
 	
-	for(i = 99; i >=0; i--) {
+	for(i = 30; i >=0; i--) {
 		item = {};
 		item.title = "Leckere Tomaten " + i;		
 		item.location = "Clausthal-Zellerfeld";
 		item.picture = "http://localhost:3002/img/tomatoes.jpg";
 		item.user = "testuser";		
 		item.date = new Date();
+        item.valid = true;
 		
 		postDB.insert(item, function (err, newDoc) {});
 		
