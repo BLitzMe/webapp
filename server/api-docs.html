@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Untitled Document.md</title><style></style></head><body id="preview">
+<h1><a id="get_posts_0"></a>get /posts</h1>
+<p>gives a list of 20 posts, in the order they should be displayed</p>
+<h2><a id="query_inputs_3"></a>query inputs:</h2>
+<ul>
+<li>location: string - optional. if given the result will only return posts with this location (exact string match)</li>
+<li>start: int - optional. if given, we don’t send posts 0-19, but posts start-start+19.<br>
+example: /posts?location=Clausthal-Zellerfeld&amp;start=17   for posts 17-36 in Clausthal-Zellerfeld<br>
+/posts for posts 0-20 anywhere</li>
+</ul>
+<h2><a id="responses_9"></a>responses:</h2>
+<h3><a id="200_10"></a>200</h3>
+<p>json with an array of objects with the following attributes:</p>
+<ul>
+<li>title: string - the title of the post</li>
+<li>location: string - the location of the offerin</li>
+<li>picture: string - a relative link to the picture</li>
+<li>user: string - the username of the user that created the post</li>
+<li>date: string - a parsable indicating the time the post was created</li>
+<li>_id: string - a unique id of the post</li>
+<li>description: string - the post description</li>
+<li>comments: array - an array of comment objects<br>
+– text: string - the comment text<br>
+– user: string - the username of the user that created the comment<br>
+– date: string - a parsable string indicating the time the comment was written<br>
+– postID: string - the id of the post the comment was attached to<br>
+– _id: string - a unique id for each comment<br>
+example:<br>
+[{<br>
+“title”: “Leckere Tomaten 19”,<br>
+“location”: “Clausthal-Zellerfeld”,<br>
+“picture”: “/img/tomatoes.png”,<br>
+“user”: “testuser”,<br>
+“date”: “2018-07-05T17:42:55.906Z”,<br>
+“_id”: “UO2Q642HEQli1WMf”<br>
+“description”: “ganz viele tolle tomaten”,<br>
+“comments”: [{<br>
+“text”: “alles supertoll”,<br>
+“user”: “testuser2”,<br>
+“date”: “2018-07-05T18:01:29.607Z”,<br>
+“postID”: “4V1CIgebssdUWmBt”,<br>
+“_id”: “7jR4OlqwHGPVMMVq”<br>
+}]<br>
+}]</li>
+</ul>
+<h3><a id="404_43"></a>404</h3>
+<p>in the case no post could be found, for example due to the fact that there are no posts in the given location</p>
+<h3><a id="500_46"></a>500</h3>
+<p>in the case an an internal server error occured</p>
+<h1><a id="get_postssubmit_51"></a>get /posts/submit</h1>
+<p>allows the user of the api to add new posts to the database</p>
+<h2><a id="query_inputs_54"></a>query inputs:</h2>
+<ul>
+<li>user: string - the username that should be displayed with the post. 100 characters maximal (will be replaced with proper auth later)</li>
+<li>title: string - the title of the post, to be displayed on the main page and in the modal view. 100 characters maximal</li>
+<li>description: string - further description of the post, to be displayed in the modal view only. 500 characters maximal</li>
+<li>location: string - the location of the post. 100 characters maximal<br>
+example: /posts/submit?location=Clausthal-Zellerfeld&amp;user=testuser&amp;title=testtitle&amp;description=testdescription</li>
+</ul>
+<h2><a id="responses_61"></a>responses:</h2>
+<h3><a id="200_62"></a>200</h3>
+<p>confirmation that the post was added to the database. includes the id of the new post as a string in the body.<br>
+example: “UO2Q642HEQli1WMf”</p>
+<h3><a id="400_66"></a>400</h3>
+<p>a problem was found with the query data, and thus the post was not created. additional information about the problem is included as a string in the body.<br>
+example: “no location”</p>
+<h3><a id="500_70"></a>500</h3>
+<p>the post was not created since an internal server error occured.</p>
+<h1><a id="get_comment_74"></a>get /comment</h1>
+<p>allows the user of the api to add a new comment to an post in the database</p>
+<h2><a id="query_inputs_77"></a>query inputs:</h2>
+<ul>
+<li>user: string - the username that should be displayed with the comment. 100 characters maximal (will be replaced with proper auth later)</li>
+<li>text: string - the comment text. 200 characters maximal</li>
+<li>postID: string - the id of the post the comment should be added to<br>
+example: /comment?user=testcommenter&amp;text=testcomment&amp;postID=UO2Q642HEQli1WMf</li>
+</ul>
+<h2><a id="responses_83"></a>responses:</h2>
+<h3><a id="200_84"></a>200</h3>
+<p>confirmation that the comment was added to the post. includes id of the new comment as a string in the body<br>
+example: “7jR4OlqwHGPVMMVq”</p>
+<h3><a id="400_88"></a>400</h3>
+<p>a problem was found with the query data, and thus the comment was not created. additional information about the problem is included as a string in the body.<br>
+example: “no user”</p>
+<h3><a id="404_92"></a>404</h3>
+<p>in the case no post could be found for the given postID.</p>
+<h3><a id="500_95"></a>500</h3>
+<p>the post was not created since an internal server error occured.</p>
+
+</body></html>

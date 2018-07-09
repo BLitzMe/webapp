@@ -95,29 +95,3 @@ in the case no post could be found for the given postID.
 
 ### 500
 the post was not created since an internal server error occured.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
