@@ -11,12 +11,19 @@ import {
   setDescription,
   setTitle
 } from "../actions/newPostActions";
-import axios from "axios"
+import axios from "axios";
+const thingsToSend = {
+
+};
 class PostInputMask extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
+      name: "",
+      title: "",
+      description: "",
+      location: ""
     };
     this.cancelAndGoBackToMain = this.cancelAndGoBackToMain.bind(this);
   }
@@ -26,11 +33,12 @@ class PostInputMask extends React.Component {
     this.setState({
       showModal: true
     });
+   
   }
   cancelAndGoBackToMain() {
     this.props.turnModalOff();
   }
-  componentDidUpdate() {}
+/*   componentDidUpdate() {} */
   newPostModalMetaData = {
     modalTitle: "Neues Angebot erstellen",
     nameLabel: "Who is Posting?",
@@ -38,44 +46,49 @@ class PostInputMask extends React.Component {
     pictureLabel: "Upload Picture",
     descriptionLabel: "Do you want to enter more details?"
   };
-
+/* functions to handle submitting new input data */
   imageToUploadHandler = event => {};
   sendName = e => {
-    this.props.setName(e.target.value);
-  };
-  sendDate = e => {
-    this.props.setDate(e.target.value);
-  };
+    this.setState({
+      name: e.target.value 
+    })
+  }
+ /*  sendDate = e => {
+    this.setState({
+      name: e.target.value 
+    })
+  }; */
   sendDescription = e => {
-    this.props.setDescription(e.target.value);
+    this.setState({
+      description: e.target.value 
+    }),
+    console.log(this.state.description)
   };
   sendOrt = e => {
-    this.props.setOrt(e.target.value);
+    this.setState({
+      ort: e.target.value 
+    })
   };
   sendTitle = e => {
-    this.props.setTitle(e.target.value);
+    this.setState({
+      title: e.target.value 
+    })
   };
 
   onSubmit = e => {
     e.preventDefault();
-    const thingsToSend ={
-      name: this.props.newPost.name,
-      title: this.props.newPost.title,
-      description: this.props.newPost.description,
-      location: this.props.newPost.location
-
-    }
-
+    let postThings = new FormData();
+    postThings.set(this.state.name, this.state.title, this.state.description, this.state.location)
+   
+/* axios comamnd to handle submit */
     axios({
-      method: 'post',
-      url: '/posts/submit?location=Clausthal-Zellerfeld',
-      data:{
-        thingsToSend
-      }
-    }).then((res)=>{
-      console.log(res)
-      console.log("fake tits")
-    })
+      method: "post",
+      url: "/posts/submit?location=Clausthal-Zellerfeld",
+      data: postThings
+    }).then(res => {
+      console.log(res);
+ 
+    });
   };
 
   render() {
@@ -84,7 +97,7 @@ class PostInputMask extends React.Component {
         <Modal
           id="newPostModal"
           isOpen={this.state.showModal}
-          toggle={this.toggle}
+          /* toggle={this.toggle} */
           className={this.props.className}
         >
           <ModalHeader
@@ -105,7 +118,6 @@ class PostInputMask extends React.Component {
                   id="exampleEmail"
                   placeholder="Was?"
                   onChange={this.sendTitle}
-                  
                 />
               </FormGroup>
               <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -175,7 +187,7 @@ const mapDispatchToProps = dispatch => {
   return {
     turnModalOff: () => {
       dispatch(NewPostButtonClean());
-    },
+    }/* ,
     setName: name => {
       dispatch(setName(name));
     },
@@ -190,7 +202,7 @@ const mapDispatchToProps = dispatch => {
     },
     setOrt: ort => {
       dispatch(setOrt(ort));
-    }
+    } */
   };
 };
 const mapStateToProps = state => {
