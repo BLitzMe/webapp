@@ -78,13 +78,11 @@ class PostInputMask extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     let postThings = new FormData();
-    postThings.set(this.state.name, this.state.title, this.state.description, this.state.location)
    
 /* axios comamnd to handle submit */
     axios({
-      method: "post",
-      url: "/posts/submit?location=Clausthal-Zellerfeld",
-      data: postThings
+      method: "get",
+      url: "/posts/submit?location=" + this.state.location + "&title=" + this.state.title + "&user=" + this.state.name + "&description=" + this.state.description
     }).then(res => {
       console.log(res);
  
