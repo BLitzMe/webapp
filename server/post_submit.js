@@ -59,7 +59,7 @@ function handleCall(request, response) {
         error400("location too long");
     
     
-    if (response.statuscode === 400) {
+    if (response.statusCode === 400) {
         console.log(new Date().toISOString() + " found errors in query parameters, sending 400");
         response.end();
         return;        
@@ -124,7 +124,7 @@ function handleCall(request, response) {
     
     function error400(err) {
         if (err) {
-            response.statuscode = 400;
+            response.statusCode  = 400;
             console.log(new Date().toISOString() + ": " + "found problem in query: " + err);            
             response.write(err);
         }
