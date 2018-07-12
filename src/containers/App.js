@@ -25,7 +25,7 @@ class App extends React.Component {
           this.props.fetchPosts
       }
       apiRequest () {
-        axios.get('/posts?location=Clausthal-Zellerfeld')
+        axios.get('/posts')
           .then(response => {
              this.props.loadPosts(response.data);
             console.log(response.data);

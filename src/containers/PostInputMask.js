@@ -66,7 +66,7 @@ class PostInputMask extends React.Component {
   };
   sendOrt = e => {
     this.setState({
-      ort: e.target.value 
+      location: e.target.value 
     })
   };
   sendTitle = e => {
