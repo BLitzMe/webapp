@@ -6,13 +6,7 @@ var postSubmitAPI = require('./post_submit.js');
 
 var server = express();
 
-//additional imports
-var bodyParser = require("body-parser");
-server.use(bodyParser.json());
-var urlEncParser=bodyParser.urlencoded({extended:false});
-
-/* server.get("/posts/submit", postSubmitAPI.handleCall); */
-server.post("/posts/submit", urlEncParser,postSubmitAPI.handlePostRequest);
+server.get("/posts/submit", postSubmitAPI.handlePostSubmitAPICall);
 server.get("/posts", postsAPI.handlePostsAPICall);
 server.get("/comment", commentAPI.handleCommentAPICall);
 

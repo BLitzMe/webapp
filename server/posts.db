@@ -1,6 +1,5 @@
 {"title":"Leckere Tomaten 20","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078258109},"valid":true,"_id":"4LKgn9EDpsUzwMn5"}
 {"title":"Leckere Tomaten 2","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078260585},"valid":true,"_id":"4wKr1SAnMr9X8pXO"}
-{"user":"asdf","title":"asdf","location":"asdf","description":"asdf","date":{"$$date":1531374097500},"valid":true,"_id":"AV877me5OYLzrj1G"}
 {"title":"Leckere Tomaten 29","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078256866},"valid":true,"_id":"CyTzwKSqGZlCzW4s"}
 {"title":"Leckere Tomaten 22","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078257834},"valid":true,"_id":"DRroJotE4E7wIMcv"}
 {"title":"Leckere Tomaten 14","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078258934},"valid":true,"_id":"J4xWBg2yRzjgyhjY"}
@@ -11,8 +10,6 @@
 {"title":"Leckere Tomaten 13","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078259072},"valid":true,"_id":"OFDVuuytkidYZ73L"}
 {"title":"Leckere Tomaten 15","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078258795},"valid":true,"_id":"OpBbG4YD8io685cc"}
 {"title":"Leckere Tomaten 28","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078257010},"valid":true,"_id":"OxusjhpIGKvmLbzV"}
-{"user":"wer","title":"adf","location":"ter","description":"er","date":{"$$date":1531374196907},"valid":true,"_id":"QkS8ZZnOyyjxfxOG"}
-{"user":"asdf","title":"wea","location":"function toString() { [native code] }","date":{"$$date":1531364264187},"valid":true,"_id":"SHLTomJ37Q6SLFr2"}
 {"title":"Leckere Tomaten 16","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078258659},"valid":true,"_id":"WNdfP7S5rQ43A600"}
 {"title":"Leckere Tomaten 1","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078260724},"valid":true,"_id":"aUIQu9dKLe45QhwV"}
 {"title":"Leckere Tomaten 8","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078259762},"valid":true,"_id":"ajMSbCPAPvq8E84P"}
@@ -26,7 +23,6 @@
 {"title":"Leckere Tomaten 11","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078259348},"valid":true,"_id":"nAHD0rIjaVL018JM"}
 {"title":"Leckere Tomaten 24","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078257562},"valid":true,"_id":"sKvxoxmcVOZ6ekxK"}
 {"title":"Leckere Tomaten 18","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078258385},"valid":true,"_id":"sKzA35qe5PBEtxL5"}
-{"user":"jacky","title":"some food","location":"function toString() { [native code] }","date":{"$$date":1531364397559},"valid":true,"_id":"toDifP4XN3fBhcOL"}
 {"title":"Leckere Tomaten 5","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078260175},"valid":true,"_id":"uXvRRUml0mN4QPIp"}
 {"title":"Leckere Tomaten 3","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078260445},"valid":true,"_id":"xKqIpqpcG4OVx9AU"}
 {"title":"Leckere Tomaten 10","location":"Clausthal-Zellerfeld","picture":"http://localhost:3002/img/tomatoes.jpg","user":"testuser","date":{"$$date":1531078259483},"valid":true,"_id":"xbfRDu6kMCY62rRM"}

@@ -12,7 +12,9 @@ import {
   setTitle
 } from "../actions/newPostActions";
 import axios from "axios";
+const thingsToSend = {
 
+};
 class PostInputMask extends React.Component {
   constructor(props) {
     super(props);
@@ -51,15 +53,20 @@ class PostInputMask extends React.Component {
       name: e.target.value 
     })
   }
-
+ /*  sendDate = e => {
+    this.setState({
+      name: e.target.value 
+    })
+  }; */
   sendDescription = e => {
     this.setState({
       description: e.target.value 
-    })
-  }
+    }),
+    console.log(this.state.description)
+  };
   sendOrt = e => {
     this.setState({
-      location: e.target.value 
+      ort: e.target.value 
     })
   };
   sendTitle = e => {
@@ -70,17 +77,12 @@ class PostInputMask extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
+    let postThings = new FormData();
    
 /* axios comamnd to handle submit */
     axios({
-      method: "post",
-      url: "/posts/submit",
-      data: {
-        name: this.state.name,
-        title: this.state.title,
-        location: this.state.location,
-        description: this.state.description
-      }
+      method: "get",
+      url: "/posts/submit?location=" + this.state.location + "&title=" + this.state.title + "&user=" + this.state.name + "&description=" + this.state.description
     }).then(res => {
       console.log(res);
  
